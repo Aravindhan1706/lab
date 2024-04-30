@@ -12,7 +12,7 @@ def save_uploaded_file(uploaded_file, target_folder):
 st.title('Image Uploader')
 
 # Specify the target folder to save the images
-target_folder = "C:\Users\tbsmi\OneDrive\Desktop\Images"
+target_folder = r"C:\Users\tbsmi\OneDrive\Desktop\Images"
 
 # Display a file uploader widget
 uploaded_file = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
