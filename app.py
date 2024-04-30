@@ -1,43 +1,23 @@
+import os
 import streamlit as st
 
+# Function to save uploaded image to specified folder
+def save_uploaded_file(uploaded_file, target_folder):
+    with open(os.path.join(target_folder, uploaded_file.name), "wb") as f:
+        f.write(uploaded_file.getbuffer())
+    return os.path.join(target_folder, uploaded_file.name)
+
 # Title of the web app
-st.title('Simple Calculator')
+st.title('Image Uploader')
 
-# Function to perform addition
-def add(a, b):
-    return a + b
+# Specify the target folder to save the images
+target_folder = "C:/Users/tbsmi/OneDrive/Desktop/Images"
 
-# Function to perform subtraction
-def subtract(a, b):
-    return a - b
+# Display a file uploader widget
+uploaded_file = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
 
-# Function to perform multiplication
-def multiply(a, b):
-    return a * b
-
-# Function to perform division
-def divide(a, b):
-    if b == 0:
-        return "Cannot divide by zero!"
-    else:
-        return a / b
-
-# Sidebar to get user input
-st.sidebar.header('Enter Values')
-a = st.sidebar.number_input("Enter the first number:")
-b = st.sidebar.number_input("Enter the second number:")
-operation = st.sidebar.selectbox("Select Operation", ("Addition", "Subtraction", "Multiplication", "Division"))
-
-# Perform the selected operation
-if operation == "Addition":
-    result = add(a, b)
-elif operation == "Subtraction":
-    result = subtract(a, b)
-elif operation == "Multiplication":
-    result = multiply(a, b)
-elif operation == "Division":
-    result = divide(a, b)
-
-# Display the result
-st.write(f"Result: {result}")
-
+# Check if an image has been uploaded
+if uploaded_file is not None:
+    # Save the uploaded image to the target folder
+    saved_path = save_uploaded_file(uploaded_file, target_folder)
+    st.success(f"Image saved successfully at: {saved_path}")
