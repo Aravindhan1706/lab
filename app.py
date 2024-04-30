@@ -1,17 +1,18 @@
 import os
 import streamlit as st
+import PIL.Image as Image
 
 # Function to save uploaded image to specified folder
 def save_uploaded_file(uploaded_file, target_folder):
-    with open(os.path.join(target_folder, uploaded_file.name), "wb") as f:
-        f.write(uploaded_file.getbuffer())
+    img = Image.open(uploaded_file)
+    img.save(os.path.join(target_folder,'uploaded_image.jpg'))
     return os.path.join(target_folder, uploaded_file.name)
 
 # Title of the web app
 st.title('Image Uploader')
 
 # Specify the target folder to save the images
-target_folder = "C:/Users/tbsmi/OneDrive/Desktop/Images"
+target_folder = "./Image_Folder"
 
 # Display a file uploader widget
 uploaded_file = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
