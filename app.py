@@ -5,7 +5,7 @@ import PIL.Image as Image
 # Function to save uploaded image to specified folder
 def save_uploaded_file(uploaded_file, target_folder):
     img = Image.open(uploaded_file)
-    img.save(os.path.join(target_folder,'uploaded_image.jpg'))
+    img.save('uploaded_image.jpg')
     return os.path.join(target_folder, uploaded_file.name)
 
 # Title of the web app
