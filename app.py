@@ -5,14 +5,14 @@ import PIL.Image as Image
 # Function to save uploaded image to specified folder
 def save_uploaded_file(uploaded_file, target_folder):
     img = Image.open(uploaded_file)
-    img.save('uploaded_image.jpg')
+    img.save(os.path.join(target_folder, uploaded_file.name))
     return os.path.join(target_folder, uploaded_file.name)
 
 # Title of the web app
 st.title('Image Uploader')
 
 # Specify the target folder to save the images
-target_folder = r"C:\Users\tbsmi\OneDrive\Desktop\Images"
+target_folder = r""
 
 # Display a file uploader widget
 uploaded_file = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
